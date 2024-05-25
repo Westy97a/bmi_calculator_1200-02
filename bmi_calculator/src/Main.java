@@ -59,10 +59,7 @@ public class Main {
             //returns boolean based on the return condition
             return savedInput[1] > 24;
         }
-        catch(Exception exception){
-            System.out.println("Invalid input");
-            return false;
-        }
+        catch(Exception exception){ System.out.println("Invalid input");return false;}
     }
     public static String calculateBmi(){
         //calculate bmi
