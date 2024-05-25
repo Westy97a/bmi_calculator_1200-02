@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 //By: Austin West - 100544931
@@ -9,7 +10,7 @@ import java.util.Scanner;
 public class Main {
     //Creating properties
     static int CONVERSION_FACTOR = 703;
-    static float[] savedInput;
+    static float[] savedInput = {0,0};
     static Scanner userInput = new Scanner(System.in);
     static boolean continueFlag = false;
 
@@ -26,16 +27,16 @@ public class Main {
             continueFlag = requestWeight();
         }
 
-        System.out.println("");
+        System.out.println(calculateBmi());
     }
-
     public static boolean requestHeight(){
         //method to get input and validate
         try {
             //attempt to convert user input into an integer
             System.out.println("Please enter your height in inches (In range of 24 -> 120 )");
-            savedInput[0] = Float.parseFloat(userInput.nextLine());
+            int i = Integer.parseInt(userInput.nextLine());
             //check if range is valid
+            savedInput[0] = i;
             if (savedInput[0] > 23 && savedInput[0] < 121){
                 return true;
             }
@@ -48,13 +49,13 @@ public class Main {
         }
 
     }
-
     public static boolean requestWeight(){
         //method to get the users weight
         try{
-            //attempt to convert user input into an intgeger
-            System.out.println("Please enter your height in lbs. (Input must be above 24");
-            savedInput[1] = Float.parseFloat(userInput.nextLine());
+            //attempt to convert user input into an integer
+            System.out.println("Please enter your weight in lbs. (Input must be above 24");
+            int i = Integer.parseInt(userInput.nextLine());
+            savedInput[1] = i;
             //returns boolean based on the return condition
             return savedInput[1] > 24;
         }
@@ -63,14 +64,21 @@ public class Main {
             return false;
         }
     }
-
     public static String calculateBmi(){
+        //calculate bmi
+        System.out.println(Arrays.toString(savedInput));
+        double bmi = (savedInput[1] / (savedInput[0] * savedInput[0])) * CONVERSION_FACTOR;
+        //return a string that offers both the bmi and a description in a string
+        return String.format("You have a bmi of %.2f\n", bmi) + bmiDescriptor(bmi);
 
-
-        return "test";
     }
-
-    public static String bmiDescriptor(Integer bmi){
+    public static String bmiDescriptor(double bmi){
+        //conditional statements based on bmi given
+        if(bmi >= 30){return ("A BMI of 30 or over is considered “obese”.");}
+        else if(bmi >= 25){return ("A BMI of 25 up to less than 30 is considered “overweight”.");}
+        else if(bmi >= 18.5){return ("A BMI of 18.5 up to less than 25 is considered “healthy”.");}
+        else if(bmi >= 16){return("A BMI of 16 up to less than 18.5 is considered “underweight”.");}
+        else{return("A BMI of less than 16 is considered “severely underweight”");}
 
     }
 }
