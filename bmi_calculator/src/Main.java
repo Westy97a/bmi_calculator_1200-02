@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+//By: Austin West - 100544931
+//Date: 5/24/2024
+//Assignment 1: Simple Java Application - COSC-1200-02
+//Description: calculates bmi from users input using inches and lbs
 
 
 public class Main {
